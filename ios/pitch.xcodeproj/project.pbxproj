@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* pitchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* pitchTests.m */; };
+		04B368E628AFE40000EA3017 /* ContactNativeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B368E528AFE40000EA3017 /* ContactNativeModule.swift */; };
+		04B368E828AFE41200EA3017 /* ContactNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B368E728AFE41200EA3017 /* ContactNativeModule.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-pitch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-pitch.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -30,6 +32,9 @@
 		00E356EE1AD99517003FC87E /* pitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pitchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* pitchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pitchTests.m; sourceTree = "<group>"; };
+		04B368E428AFE40000EA3017 /* pitch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pitch-Bridging-Header.h"; sourceTree = "<group>"; };
+		04B368E528AFE40000EA3017 /* ContactNativeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactNativeModule.swift; sourceTree = "<group>"; };
+		04B368E728AFE41200EA3017 /* ContactNativeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactNativeModule.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* pitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = pitch/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = pitch/AppDelegate.mm; sourceTree = "<group>"; };
@@ -92,6 +97,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				04B368E528AFE40000EA3017 /* ContactNativeModule.swift */,
+				04B368E428AFE40000EA3017 /* pitch-Bridging-Header.h */,
+				04B368E728AFE41200EA3017 /* ContactNativeModule.m */,
 			);
 			name = pitch;
 			sourceTree = "<group>";
@@ -207,7 +215,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -413,6 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				04B368E828AFE41200EA3017 /* ContactNativeModule.m in Sources */,
+				04B368E628AFE40000EA3017 /* ContactNativeModule.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-pitch-pitchTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -459,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-pitch-pitchTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = pitchTests/Info.plist;
@@ -499,6 +511,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = pitch;
+				SWIFT_OBJC_BRIDGING_HEADER = "pitch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -524,6 +537,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = pitch;
+				SWIFT_OBJC_BRIDGING_HEADER = "pitch-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
