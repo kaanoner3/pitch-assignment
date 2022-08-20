@@ -1,36 +1,31 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Text, Easing, StyleSheet} from 'react-native';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
-import {useScroller} from './AnimationScrollContext';
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import Animated from 'react-native-reanimated';
 
 export interface HeaderProps {
   headerLeft?: JSX.Element;
   headerRight?: JSX.Element;
   title?: string;
+  titleOpacity?: {opacity: number};
 }
 
-export const Header = (props: HeaderProps) => {
-  const {headerTitleOpacity} = useScroller();
-
+export const Header: React.FC<HeaderProps> = ({
+  headerLeft,
+  headerRight,
+  title,
+  titleOpacity,
+}) => {
   return (
     <View style={styles.header}>
-      <View style={styles.headerLeft}>
-        {props.headerLeft ? props.headerLeft : null}
-      </View>
+      <View style={styles.headerLeft}>{headerLeft ? headerLeft : null}</View>
       <Animated.View
         style={{
           ...styles.headerTitle,
-          ...headerTitleOpacity,
+          ...titleOpacity,
         }}>
-        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.title}>{title}</Text>
       </Animated.View>
-      <View style={styles.headerRight}>
-        {props.headerRight ? props.headerRight : null}
-      </View>
+      <View style={styles.headerRight}>{headerRight ? headerRight : null}</View>
     </View>
   );
 };
@@ -41,6 +36,7 @@ export const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: 44,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

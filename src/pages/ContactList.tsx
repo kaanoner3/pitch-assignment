@@ -11,7 +11,8 @@ import {
 import ContactNativeModule from '../ContactsNativeModule';
 import Header from '../Header';
 import {ContactListNavigationProp} from '../navigators';
-import {AnimatedFlatList} from '../AnimationScrollContext';
+import useHeaderAnimationHandler from '../useHeaderAnimationHandler';
+import Animated from 'react-native-reanimated';
 
 const ListHeaderComponent = () => {
   return (
@@ -24,6 +25,7 @@ const ListHeaderComponent = () => {
 const ContactList: React.FC = () => {
   const [contacts, setContacts] = React.useState<Contact[]>([]);
   const navigation = useNavigation<ContactListNavigationProp>();
+  const {scrollHandler, headerTitleOpacity} = useHeaderAnimationHandler();
 
   React.useEffect(() => {
     ContactNativeModule.getContacts()
@@ -45,9 +47,10 @@ const ContactList: React.FC = () => {
   };
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header title="Contacts" />
-      <AnimatedFlatList
+      <Header title="Contacts" titleOpacity={headerTitleOpacity} />
+      <Animated.FlatList
         data={contacts}
+        onScroll={scrollHandler}
         renderItem={renderItem}
         style={styles.flatList}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
