@@ -1,13 +1,28 @@
 import * as React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import ContactDetail from './pages/ContactDetail';
 import ContactList from './pages/ContactList';
 
+export type CoreStackParamList = {
+  ContactList: undefined;
+  ContactDetail: {contact: Contact};
+};
+export type ContactListNavigationProp = NativeStackNavigationProp<
+  CoreStackParamList,
+  'ContactDetail'
+>;
 const CoreNavigator = () => {
-  const CoreStack = createNativeStackNavigator();
+  const CoreStack = createNativeStackNavigator<CoreStackParamList>();
 
   return (
-    <CoreStack.Navigator initialRouteName="ContactList">
+    <CoreStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="ContactList">
       <CoreStack.Screen name="ContactList" component={ContactList} />
       <CoreStack.Screen name="ContactDetail" component={ContactDetail} />
     </CoreStack.Navigator>
