@@ -53,7 +53,7 @@ class ContactNativeModule: NSObject {
          var emailAddresses = [[String:String]]()
          for (_, emailAddress) in contact.emailAddresses.enumerated() {
            var email = [String: String]()
-           let label = CNLabeledValue<NSString>.localizedString(forLabel: emailAddress.label!)
+           let label = CNLabeledValue<NSString>.localizedString(forLabel: emailAddress.label ?? "")
            email[label] = (emailAddress.value as String)
            emailAddresses.append(email)
          }
@@ -64,7 +64,8 @@ class ContactNativeModule: NSObject {
         var phoneNumbers = [[String:String]]()
         for (_, phoneNumber) in contact.phoneNumbers.enumerated() {
           var phone = [String:String]()
-          let label = CNLabeledValue<NSString>.localizedString(forLabel: phoneNumber.label!)
+          print("test123", phoneNumber)
+          let label = CNLabeledValue<NSString>.localizedString(forLabel: phoneNumber.label ?? "")
           phone[label] = phoneNumber.value.stringValue
           phoneNumbers.append(phone)
         }
