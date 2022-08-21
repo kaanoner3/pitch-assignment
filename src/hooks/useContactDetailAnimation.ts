@@ -18,6 +18,8 @@ const useContanctDetailAnimationHandler = () => {
       } else {
         translationY.value = -offsetY;
       }
+    } else {
+      translationY.value = 0;
     }
   });
   const transformStyle = useAnimatedStyle(() => {

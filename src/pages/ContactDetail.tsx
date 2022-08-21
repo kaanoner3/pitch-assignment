@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   containter: {flex: 1, backgroundColor: '#f1f1f1'},
   contentContainer: {
     paddingHorizontal: 10,
-    paddingBottom: 60,
+    paddingBottom: 100,
   },
   scrollViewItemContainer: {marginTop: 10},
   contactNameText: {
