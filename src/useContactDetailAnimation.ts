@@ -10,10 +10,10 @@ const MAX_OFFSET = 82;
 
 const useContanctDetailAnimationHandler = () => {
   const translationY = useSharedValue(0);
-  const disableScrollView = useSharedValue(true);
   const scrollHandler = useAnimatedScrollHandler(event => {
     const offsetY = event.contentOffset.y;
     console.log(offsetY);
+
     if (offsetY > 0) {
       if (offsetY > MAX_OFFSET) translationY.value = -MAX_OFFSET;
       else {
@@ -62,7 +62,7 @@ const useContanctDetailAnimationHandler = () => {
     scrollHandler,
     animationTransformStyle: transformStyle,
     animationScaleStyle: scaleStyle,
-    disableScrollView,
+
     transformStyleActionBox,
     userInfoHeight,
   };

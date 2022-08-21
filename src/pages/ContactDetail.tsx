@@ -56,46 +56,44 @@ const ContactDetail: React.FC = () => {
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={1}
-        style={{
-          height: '100%',
-        }}
+        style={{flex: 1}}
         contentContainerStyle={styles.contentContainer}>
-        {contact.phoneNumbers.map(phoneNumber => {
+        {contact.phoneNumbers?.map(phoneNumber => {
           const key = Object.keys(phoneNumber)[0];
           return (
-            <View style={{marginTop: 10}}>
+            <View key={phoneNumber[key]} style={{marginTop: 10}}>
               <CustomButton label={key} text={phoneNumber[key]} />
             </View>
           );
         })}
 
-        {contact.emailAddresses.map(email => {
+        {contact.emailAddresses?.map(email => {
           const key = Object.keys(email)[0];
           return (
-            <View style={{marginTop: 10}}>
+            <View key={email[key]} style={{marginTop: 10}}>
               <CustomButton label={key} text={email[key]} />
             </View>
           );
         })}
 
         {contact.birthday && (
-          <View style={{marginTop: 10}}>
+          <View key={contact.birthday} style={{marginTop: 10}}>
             <CustomButton label="birthday" text={contact.birthday} />
           </View>
         )}
-        <View style={{marginTop: 10}}>
+        <View key="Send Message" style={{marginTop: 10}}>
           <CustomButton text="Send Message" />
         </View>
-        <View style={{marginTop: 10}}>
+        <View key="Share Contact" style={{marginTop: 10}}>
           <CustomButton text="Share Contact" />
         </View>
-        <View style={{marginTop: 10}}>
+        <View key="Add to Favourites" style={{marginTop: 10}}>
           <CustomButton text="Add to Favourites" />
         </View>
-        <View style={{marginTop: 10}}>
+        <View key="Add to Emergency Contact" style={{marginTop: 10}}>
           <CustomButton text="Add to Emergency Contact" />
         </View>
-        <View style={{marginTop: 10}}>
+        <View key="Share My Location" style={{marginTop: 10}}>
           <CustomButton text="Share My Location" />
         </View>
       </Animated.ScrollView>
@@ -108,9 +106,10 @@ export default ContactDetail;
 const styles = StyleSheet.create({
   containter: {flex: 1, backgroundColor: '#f1f1f1'},
   contentContainer: {
+    flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 10,
-    paddingBottom: 150,
+    paddingBottom: 50,
   },
   dummyView: {
     marginHorizontal: 5,
