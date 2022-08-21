@@ -57,12 +57,12 @@ const ContactDetail: React.FC = () => {
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        style={{flex: 1}}
+        style={styles.flexOne}
         contentContainerStyle={styles.contentContainer}>
         {contact.phoneNumbers?.map(phoneNumber => {
           const key = Object.keys(phoneNumber)[0];
           return (
-            <View key={phoneNumber[key]} style={{marginTop: 10}}>
+            <View key={phoneNumber[key]} style={styles.scrollViewItemContainer}>
               <CustomButton label={key} text={phoneNumber[key]} />
             </View>
           );
@@ -71,35 +71,37 @@ const ContactDetail: React.FC = () => {
         {contact.emailAddresses?.map(email => {
           const key = Object.keys(email)[0];
           return (
-            <View key={email[key]} style={{marginTop: 10}}>
+            <View key={email[key]} style={styles.scrollViewItemContainer}>
               <CustomButton label={key} text={email[key]} />
             </View>
           );
         })}
-        <View key="note" style={{marginTop: 10}}>
+        <View key="note" style={styles.scrollViewItemContainer}>
           <DummyNoteArea />
         </View>
         {contact.birthday && (
-          <View key={contact.birthday} style={{marginTop: 10}}>
+          <View key={contact.birthday} style={styles.scrollViewItemContainer}>
             <CustomButton label="birthday" text={contact.birthday} />
           </View>
         )}
-        <View key="Send Message" style={{marginTop: 10}}>
+        <View key="Send Message" style={styles.scrollViewItemContainer}>
           <CustomButton text="Send Message" />
         </View>
-        <View key="Share Contact" style={{marginTop: 10}}>
+        <View key="Share Contact" style={styles.scrollViewItemContainer}>
           <CustomButton text="Share Contact" />
         </View>
-        <View key="Add to Favourites" style={{marginTop: 10}}>
+        <View key="Add to Favourites" style={styles.scrollViewItemContainer}>
           <CustomButton text="Add to Favourites" />
         </View>
-        <View key="Add to Emergency Contact" style={{marginTop: 10}}>
+        <View
+          key="Add to Emergency Contact"
+          style={styles.scrollViewItemContainer}>
           <CustomButton text="Add to Emergency Contact" />
         </View>
-        <View key="Share My Location" style={{marginTop: 10}}>
+        <View key="Share My Location" style={styles.scrollViewItemContainer}>
           <CustomButton text="Share My Location" />
         </View>
-        <View key="Share My Location" style={{marginTop: 10}}>
+        <View key="Share My Location" style={styles.scrollViewItemContainer}>
           <CustomButton textColor="red" text="Block" />
         </View>
       </Animated.ScrollView>
@@ -115,36 +117,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingBottom: 60,
   },
-  dummyView: {
-    marginHorizontal: 5,
-    height: 60,
-    width: 80,
-    borderRadius: 10,
-    backgroundColor: 'red',
-  },
+  scrollViewItemContainer: {marginTop: 10},
   contactNameText: {
     textAlign: 'center',
     fontSize: 28,
     fontWeight: 'bold',
     marginTop: 5,
     color: '#000',
-  },
-  paragraph: {
-    marginVertical: 10,
-    backgroundColor: '#fff',
-    fontSize: 15,
-    fontWeight: '500',
-    lineHeight: 21,
-    overflow: 'scroll',
-  },
-  headerText: {
-    textAlign: 'center',
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    fontSize: 17,
-    fontWeight: '600',
   },
   actionBoxContainer: {
     marginVertical: 20,
@@ -168,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1,
   },
-
+  flexOne: {flex: 1},
   contactFirstLatter: {color: '#fff', fontSize: 40},
   alignCenter: {justifyContent: 'center', alignItems: 'center'},
 });
