@@ -5,11 +5,13 @@ interface CustomButtonProps {
   label?: string;
   text: string;
   onPress?: () => void;
+  textColor?: string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
   text,
+  textColor = null,
   onPress = () =>
     Alert.alert(
       'Not implemented',
@@ -20,7 +22,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {label && <Text>{label}</Text>}
-      <Text style={styles.textStyle}>{text}</Text>
+      <Text style={[styles.textStyle, textColor ? {color: textColor} : null]}>
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };

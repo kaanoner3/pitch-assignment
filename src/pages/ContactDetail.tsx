@@ -8,12 +8,13 @@ import useContanctDetailAnimationHandler from '../useContactDetailAnimation';
 import {CoreStackParamList} from '../navigators';
 import DummyActionButton from '../components/DummActionButton';
 import CustomButton from '../components/CustomButton';
+import DummyNoteArea from '../components/DummyNoteArea';
 
 const ContactDetail: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<CoreStackParamList, 'ContactDetail'>>();
   const {contact} = route.params;
-  console.log('contact', contact);
+
   const {
     scrollHandler,
     userInfoHeight,
@@ -55,7 +56,7 @@ const ContactDetail: React.FC = () => {
       </Animated.View>
       <Animated.ScrollView
         onScroll={scrollHandler}
-        scrollEventThrottle={1}
+        scrollEventThrottle={16}
         style={{flex: 1}}
         contentContainerStyle={styles.contentContainer}>
         {contact.phoneNumbers?.map(phoneNumber => {
@@ -75,7 +76,9 @@ const ContactDetail: React.FC = () => {
             </View>
           );
         })}
-
+        <View key="note" style={{marginTop: 10}}>
+          <DummyNoteArea />
+        </View>
         {contact.birthday && (
           <View key={contact.birthday} style={{marginTop: 10}}>
             <CustomButton label="birthday" text={contact.birthday} />
@@ -96,6 +99,9 @@ const ContactDetail: React.FC = () => {
         <View key="Share My Location" style={{marginTop: 10}}>
           <CustomButton text="Share My Location" />
         </View>
+        <View key="Share My Location" style={{marginTop: 10}}>
+          <CustomButton textColor="red" text="Block" />
+        </View>
       </Animated.ScrollView>
     </SafeAreaView>
   );
@@ -106,10 +112,8 @@ export default ContactDetail;
 const styles = StyleSheet.create({
   containter: {flex: 1, backgroundColor: '#f1f1f1'},
   contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
     paddingHorizontal: 10,
-    paddingBottom: 50,
+    paddingBottom: 60,
   },
   dummyView: {
     marginHorizontal: 5,
