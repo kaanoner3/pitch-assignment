@@ -9,9 +9,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ContactNativeModule from '../ContactsNativeModule';
-import Header from '../Header';
+import Header from '../components/Header';
 import {ContactListNavigationProp} from '../navigators';
-import useHeaderAnimationHandler from '../useHeaderAnimationHandler';
+import useHeaderAnimationHandler from '../hooks/useHeaderAnimationHandler';
 import Animated from 'react-native-reanimated';
 
 const ListHeaderComponent = () => {

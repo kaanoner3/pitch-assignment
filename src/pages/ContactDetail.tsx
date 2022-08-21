@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Text, SafeAreaView, StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
-import Header from '../Header';
+import Header from '../components/Header';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import useContanctDetailAnimationHandler from '../useContactDetailAnimation';
+import useContanctDetailAnimationHandler from '../hooks/useContactDetailAnimation';
 import {CoreStackParamList} from '../navigators';
 import DummyActionButton from '../components/DummActionButton';
 import CustomButton from '../components/CustomButton';

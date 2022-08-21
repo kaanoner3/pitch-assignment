@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const DummyNoteArea: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Note</Text>
+      <Text>Dummy Note Area</Text>
     </View>
   );
 };
