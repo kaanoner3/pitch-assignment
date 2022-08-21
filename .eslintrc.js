@@ -11,7 +11,7 @@ module.exports = {
       files: ['**/*.ts', '**/*.tsx', '**/*.js'],
     },
   ],
-  plugins: ['import'],
+  plugins: ['import', 'react-hooks'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-extra-semi': 'off',
@@ -25,8 +25,14 @@ module.exports = {
     'import/no-dynamic-require': 'error',
     'no-nested-ternary': 'error',
     'prettier/prettier': 'error',
-    'react-hooks/exhaustive-deps': 'error',
     'react-native/no-inline-styles': 'error',
     'react-native/no-unused-styles': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: '(useRecoilCallback|useRecoilTransaction_UNSTABLE)',
+      },
+    ],
   },
 };
