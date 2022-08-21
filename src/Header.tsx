@@ -37,10 +37,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 44,
     paddingHorizontal: 16,
+    zIndex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f6f6f6',
+    backgroundColor: 'transparent',
     shadowColor: '#f6f6f6',
     shadowOpacity: 1,
     shadowOffset: {
