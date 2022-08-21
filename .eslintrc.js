@@ -7,7 +7,7 @@ module.exports = {
   ],
   overrides: [
     {
-      excludedFiles: ['**/*.test.*', 'packages/internal/web-entrypoint/**'],
+      excludedFiles: ['**/*.test.*'],
       files: ['**/*.ts', '**/*.tsx', '**/*.js'],
     },
   ],

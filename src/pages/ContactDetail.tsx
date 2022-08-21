@@ -9,11 +9,14 @@ import {CoreStackParamList} from '../navigators';
 import DummyActionButton from '../components/DummActionButton';
 import CustomButton from '../components/CustomButton';
 import DummyNoteArea from '../components/DummyNoteArea';
+import {useRecoilValue} from 'recoil';
+import {contactFilterById} from '../recoil';
 
 const ContactDetail: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<CoreStackParamList, 'ContactDetail'>>();
-  const {contact} = route.params;
+  const {contactId} = route.params;
+  const [contact] = useRecoilValue(contactFilterById(contactId));
 
   const {
     scrollHandler,
@@ -101,7 +104,7 @@ const ContactDetail: React.FC = () => {
         <View key="Share My Location" style={styles.scrollViewItemContainer}>
           <CustomButton text="Share My Location" />
         </View>
-        <View key="Share My Location" style={styles.scrollViewItemContainer}>
+        <View key="block" style={styles.scrollViewItemContainer}>
           <CustomButton textColor="red" text="Block" />
         </View>
       </Animated.ScrollView>

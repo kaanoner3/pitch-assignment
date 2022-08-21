@@ -13,6 +13,8 @@ import Header from '../components/Header';
 import {ContactListNavigationProp} from '../navigators';
 import useHeaderAnimationHandler from '../hooks/useHeaderAnimationHandler';
 import Animated from 'react-native-reanimated';
+import {useRecoilState} from 'recoil';
+import {contactState} from '../recoil';
 
 const ListHeaderComponent = () => {
   return (
@@ -23,7 +25,7 @@ const ListHeaderComponent = () => {
 };
 
 const ContactList: React.FC = () => {
-  const [contacts, setContacts] = React.useState<Contact[]>([]);
+  const [contacts, setContacts] = useRecoilState(contactState);
   const navigation = useNavigation<ContactListNavigationProp>();
   const {scrollHandler, headerTitleOpacity} = useHeaderAnimationHandler();
 
@@ -33,12 +35,14 @@ const ContactList: React.FC = () => {
         setContacts(response);
       })
       .catch((err: unknown) => console.log(err));
-  }, []);
+  }, [setContacts]);
 
   const renderItem: ListRenderItem<Contact> = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('ContactDetail', {contact: item})}
+        onPress={() =>
+          navigation.navigate('ContactDetail', {contactId: item.id})
+        }
         style={styles.itemContainer}>
         <Text style={styles.firstName}>{item.firstName}</Text>
         <Text style={styles.lastName}>{item.lastName}</Text>

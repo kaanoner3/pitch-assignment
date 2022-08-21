@@ -12,11 +12,10 @@ const useContanctDetailAnimationHandler = () => {
   const translationY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler(event => {
     const offsetY = event.contentOffset.y;
-    console.log(offsetY);
-
     if (offsetY > 0) {
-      if (offsetY > MAX_OFFSET) translationY.value = -MAX_OFFSET;
-      else {
+      if (offsetY > MAX_OFFSET) {
+        translationY.value = -MAX_OFFSET;
+      } else {
         translationY.value = -offsetY;
       }
     }

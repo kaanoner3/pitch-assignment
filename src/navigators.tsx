@@ -8,7 +8,7 @@ import ContactList from './pages/ContactList';
 
 export type CoreStackParamList = {
   ContactList: undefined;
-  ContactDetail: {contact: Contact};
+  ContactDetail: {contactId: string};
 };
 export type ContactListNavigationProp = NativeStackNavigationProp<
   CoreStackParamList,

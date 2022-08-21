@@ -40,7 +40,7 @@ class ContactNativeModule: NSObject {
     
     contactDict["firstName"] = contact.givenName
     contactDict["lastName"] = contact.familyName
-    
+    contactDict["id"] = contact.identifier
     if let birthday = contact.birthday?.date {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
