@@ -7,27 +7,20 @@ import {
   View,
   ListRenderItem,
   TouchableOpacity,
+  SectionList,
+  SectionListData,
 } from 'react-native';
 import ContactNativeModule from '../ContactsNativeModule';
-import Header from '../components/Header';
 import {ContactListNavigationProp} from '../navigators';
-import useHeaderAnimationHandler from '../hooks/useHeaderAnimationHandler';
-import Animated from 'react-native-reanimated';
-import {useRecoilState} from 'recoil';
-import {contactState} from '../recoil';
-
-const ListHeaderComponent = () => {
-  return (
-    <View style={styles.listHeaderContainer}>
-      <Text style={styles.title}>Contacts</Text>
-    </View>
-  );
-};
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {contactSectionListState, contactState} from '../recoil';
 
 const ContactList: React.FC = () => {
-  const [contacts, setContacts] = useRecoilState(contactState);
+  const setContacts = useSetRecoilState(contactState);
+  const contacts = useRecoilValue<
+    SectionListData<Contact, SectionListContactData>[]
+  >(contactSectionListState);
   const navigation = useNavigation<ContactListNavigationProp>();
-  const {scrollHandler, headerTitleOpacity} = useHeaderAnimationHandler();
 
   React.useEffect(() => {
     ContactNativeModule.getContacts()
@@ -51,14 +44,21 @@ const ContactList: React.FC = () => {
   };
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header title="Contacts" titleOpacity={headerTitleOpacity} />
-      <Animated.FlatList
-        data={contacts}
-        onScroll={scrollHandler}
+      <SectionList
+        sections={contacts}
         renderItem={renderItem}
         style={styles.flatList}
+        renderSectionHeader={event => {
+          return (
+            <View style={styles.sectionHeaderContainer}>
+              <Text style={styles.sectionHeader}>{event.section.title}</Text>
+            </View>
+          );
+        }}
+        SectionSeparatorComponent={() => (
+          <View style={styles.sectionTitleSeperator} />
+        )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        ListHeaderComponent={ListHeaderComponent}
         contentContainerStyle={styles.contentContainer}
       />
     </SafeAreaView>
@@ -71,23 +71,29 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     paddingHorizontal: 16,
-    paddingTop: 10,
+
     paddingBottom: 50,
   },
   flatList: {flex: 1, backgroundColor: '#fff'},
-  title: {
-    width: '100%',
-    textAlign: 'left',
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#000',
+
+  sectionHeader: {
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 5,
+    color: '#7c8ba3',
   },
-  separator: {height: 1, backgroundColor: 'rgba(0,0,0,0.2)'},
-  listHeaderContainer: {
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+  sectionHeaderContainer: {
+    backgroundColor: '#f6f6f6',
+    marginHorizontal: -16,
+    paddingHorizontal: 16,
   },
+  separator: {height: 1, backgroundColor: 'rgba(0,0,0,0.1)'},
+  sectionTitleSeperator: {
+    height: 1,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    marginHorizontal: -16,
+  },
+
   firstName: {fontSize: 16, color: '#000'},
   lastName: {fontSize: 16, marginLeft: 5, fontWeight: 'bold'},
   itemContainer: {flexDirection: 'row', paddingVertical: 10},

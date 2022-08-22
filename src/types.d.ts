@@ -6,3 +6,8 @@ interface Contact {
   emailAddresses: Record<string, string>[];
   phoneNumbers: Record<string, string>[];
 }
+
+interface SectionListContactData {
+  title: string;
+  data: Contact[];
+}

@@ -18,13 +18,20 @@ const CoreNavigator = () => {
   const CoreStack = createNativeStackNavigator<CoreStackParamList>();
 
   return (
-    <CoreStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="ContactList">
-      <CoreStack.Screen name="ContactList" component={ContactList} />
-      <CoreStack.Screen name="ContactDetail" component={ContactDetail} />
+    <CoreStack.Navigator initialRouteName="ContactList">
+      <CoreStack.Screen
+        options={{
+          title: 'Contacts',
+          headerLargeTitle: true,
+        }}
+        name="ContactList"
+        component={ContactList}
+      />
+      <CoreStack.Screen
+        options={{headerTransparent: true, title: ''}}
+        name="ContactDetail"
+        component={ContactDetail}
+      />
     </CoreStack.Navigator>
   );
 };
