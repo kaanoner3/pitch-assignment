@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {Text, SafeAreaView, StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
-import Header from '../components/Header';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import useContanctDetailAnimationHandler from '../hooks/useContactDetailAnimation';
 import {CoreStackParamList} from '../navigators';
 import DummyActionButton from '../components/DummActionButton';
@@ -11,35 +9,32 @@ import CustomButton from '../components/CustomButton';
 import DummyNoteArea from '../components/DummyNoteArea';
 import {useRecoilValue} from 'recoil';
 import {contactFilterById} from '../recoil';
+import DeviceInfo from 'react-native-device-info';
 
 const ContactDetail: React.FC = () => {
-  const navigation = useNavigation();
   const route = useRoute<RouteProp<CoreStackParamList, 'ContactDetail'>>();
   const {contactId} = route.params;
   const [contact] = useRecoilValue(contactFilterById(contactId));
+  const hasNotch = DeviceInfo.hasNotch();
 
   const {
     scrollHandler,
-    userInfoHeight,
-    animationTransformStyle,
-    animationScaleStyle,
+    scaleAnimation,
+    animationUserInfoBox,
     transformStyleActionBox,
   } = useContanctDetailAnimationHandler();
+
   return (
     <SafeAreaView style={styles.containter}>
-      <Header
-        headerLeft={
-          <Icon
-            onPress={() => navigation.goBack()}
-            name="chevron-back-outline"
-            size={30}
-            color="#000"
-          />
-        }
-      />
       <Animated.View
-        style={[styles.topContainer, animationTransformStyle, userInfoHeight]}>
-        <Animated.View style={[styles.alignCenter, {...animationScaleStyle}]}>
+        style={[
+          styles.topContainer,
+          {...animationUserInfoBox},
+          // HEADER_HEIGHT - top inset
+          // eslint-disable-next-line react-native/no-inline-styles
+          hasNotch ? {top: 92} : {top: 64},
+        ]}>
+        <Animated.View style={{...scaleAnimation}}>
           <View style={styles.contactInfoContainer}>
             <Text style={styles.contactFirstLatter}>
               {contact.firstName[0]}
@@ -60,7 +55,9 @@ const ContactDetail: React.FC = () => {
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        style={styles.flexOne}
+        style={styles.scrollViewContainer}
+        contentInset={{top: 80}}
+        contentOffset={{y: -80, x: 0}}
         contentContainerStyle={styles.contentContainer}>
         {contact.phoneNumbers?.map(phoneNumber => {
           const key = Object.keys(phoneNumber)[0];
@@ -129,11 +126,11 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   actionBoxContainer: {
-    marginVertical: 20,
+    paddingTop: 20,
+    height: 60,
     flexDirection: 'row',
     width: '100%',
     paddingHorizontal: 5,
-
     justifyContent: 'space-between',
   },
   contactInfoContainer: {
@@ -146,11 +143,14 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
   topContainer: {
-    marginTop: 10,
+    height: 120,
+    position: 'absolute',
     alignItems: 'center',
     zIndex: 1,
   },
-  flexOne: {flex: 1},
+  scrollViewContainer: {
+    flex: 1,
+    marginTop: 120,
+  },
   contactFirstLatter: {color: '#fff', fontSize: 40},
-  alignCenter: {justifyContent: 'center', alignItems: 'center'},
 });

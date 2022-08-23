@@ -48,13 +48,11 @@ const ContactList: React.FC = () => {
         sections={contacts}
         renderItem={renderItem}
         style={styles.flatList}
-        renderSectionHeader={event => {
-          return (
-            <View style={styles.sectionHeaderContainer}>
-              <Text style={styles.sectionHeader}>{event.section.title}</Text>
-            </View>
-          );
-        }}
+        renderSectionHeader={({section: {title}}) => (
+          <View style={styles.sectionHeaderContainer}>
+            <Text style={styles.sectionHeader}>{title}</Text>
+          </View>
+        )}
         SectionSeparatorComponent={() => (
           <View style={styles.sectionTitleSeperator} />
         )}
@@ -71,8 +69,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     paddingHorizontal: 16,
-
-    paddingBottom: 50,
   },
   flatList: {flex: 1, backgroundColor: '#fff'},
 
