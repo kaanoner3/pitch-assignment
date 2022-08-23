@@ -13,7 +13,7 @@ import {
 import ContactNativeModule from '../ContactsNativeModule';
 import {ContactListNavigationProp} from '../navigators';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {contactSectionListState, contactState} from '../recoil';
+import {contactSectionListState, contactState} from '../recoilSetup';
 
 const ContactList: React.FC = () => {
   const setContacts = useSetRecoilState(contactState);

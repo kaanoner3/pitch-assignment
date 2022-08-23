@@ -8,7 +8,7 @@ import DummyActionButton from '../components/DummActionButton';
 import CustomButton from '../components/CustomButton';
 import DummyNoteArea from '../components/DummyNoteArea';
 import {useRecoilValue} from 'recoil';
-import {contactFilterById} from '../recoil';
+import {contactFilterById} from '../recoilSetup';
 import DeviceInfo from 'react-native-device-info';
 
 const ContactDetail: React.FC = () => {
