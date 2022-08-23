@@ -15,7 +15,6 @@ const useContanctDetailAnimationHandler = () => {
     const offsetY = event.contentOffset.y;
     // Added scrollView content offset value to normalize the translation value
     translationY.value = offsetY + 80;
-    console.log(offsetY);
   });
 
   const transformStyleActionBox = useAnimatedStyle(() => {
