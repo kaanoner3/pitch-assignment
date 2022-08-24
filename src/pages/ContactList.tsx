@@ -79,10 +79,7 @@ const ContactList: React.FC = () => {
       .then((response: Contact[]) => {
         setContacts(response);
       })
-      .catch(
-        (err: unknown) =>
-          new Error('ERROR', 'Error occured while fetching contacts', err),
-      );
+      .catch(_ => new Error('Error occured while fetching contacts'));
   }, [setContacts]);
 
   const renderItem: ListRenderItem<Contact> = ({item}) => {
