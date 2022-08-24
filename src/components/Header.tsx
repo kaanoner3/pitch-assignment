@@ -7,16 +7,18 @@ export interface HeaderProps {
   headerRight?: JSX.Element;
   title?: string;
   titleOpacity?: {opacity: number};
+  bgColor?: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   headerLeft,
   headerRight,
+  bgColor = 'transparent',
   title,
   titleOpacity,
 }) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, {backgroundColor: bgColor}]}>
       <View style={styles.headerLeft}>{headerLeft ? headerLeft : null}</View>
       <Animated.View
         style={{
@@ -37,7 +39,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 44,
     paddingHorizontal: 16,
-    zIndex: 2,
+    zIndex: 3,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -71,13 +73,5 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     color: '#000',
-  },
-  headerText: {
-    textAlign: 'center',
-    paddingHorizontal: 10,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    fontSize: 17,
-    fontWeight: '600',
   },
 });

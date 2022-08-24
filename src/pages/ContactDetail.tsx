@@ -10,6 +10,7 @@ import DummyNoteArea from '../components/DummyNoteArea';
 import {useRecoilValue} from 'recoil';
 import {contactFilterById} from '../recoilSetup';
 import DeviceInfo from 'react-native-device-info';
+import Header from '../components/Header';
 
 const ContactDetail: React.FC = () => {
   const route = useRoute<RouteProp<CoreStackParamList, 'ContactDetail'>>();
@@ -26,11 +27,12 @@ const ContactDetail: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.containter}>
+      <Header title="" />
       <Animated.View
         style={[
           styles.topContainer,
           {...animationUserInfoBox},
-          // HEADER_HEIGHT - top inset
+          // HEADER_HEIGHT + top inset
           // eslint-disable-next-line react-native/no-inline-styles
           hasNotch ? {top: 92} : {top: 64},
         ]}>
