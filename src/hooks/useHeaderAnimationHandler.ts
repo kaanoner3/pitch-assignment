@@ -42,12 +42,12 @@ const useHeaderAnimationHandler = (isInputFocued: boolean) => {
       headerTitleOpacity.value = 0;
 
       // To animate cancel button and textInput width
-      searchInputAnimationValue.value = 1;
+      searchInputAnimationValue.value = withTiming(1, {duration: 250});
       //When we focus we want the header collapsed
       translationY.value = withTiming(60, {duration: 250});
     } else {
       // To animate cancel button and textInput width
-      searchInputAnimationValue.value = 0;
+      searchInputAnimationValue.value = withTiming(0, {duration: 250});
 
       //When we blur we want to animate title&search input to its previous position
       translationY.value = withTiming(lastScrollValue.value, {duration: 250});
@@ -116,9 +116,10 @@ const useHeaderAnimationHandler = (isInputFocued: boolean) => {
     return {
       transform: [
         {
-          translateX: withTiming(
-            interpolate(searchInputAnimationValue.value, [0, 1], [30, 10]),
-            {duration: 250},
+          translateX: interpolate(
+            searchInputAnimationValue.value,
+            [0, 1],
+            [30, 10],
           ),
         },
       ],
@@ -127,13 +128,10 @@ const useHeaderAnimationHandler = (isInputFocued: boolean) => {
 
   const textInputAnimation = useAnimatedStyle(() => {
     return {
-      width: withTiming(
-        interpolate(
-          searchInputAnimationValue.value,
-          [0, 1],
-          [SCREEN_WIDTH - 20, SCREEN_WIDTH - 80],
-        ),
-        {duration: 250},
+      width: interpolate(
+        searchInputAnimationValue.value,
+        [0, 1],
+        [SCREEN_WIDTH - 20, SCREEN_WIDTH - 80],
       ),
     };
   }, [searchInputAnimationValue.value]);
