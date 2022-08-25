@@ -107,7 +107,6 @@ const ContactList: React.FC = () => {
       </Animated.View>
     );
   };
-  console.log('test123', searchText.length > 0);
 
   return (
     <SafeAreaView style={styles.safeArea}>
