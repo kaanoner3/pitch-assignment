@@ -1,5 +1,7 @@
 # pitch-assignment
 
+This project is designed to work on iOS
+
 ### To run the project
  - yarn install in root directory 
  - cd ios & pod install
