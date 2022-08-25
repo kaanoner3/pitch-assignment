@@ -18,15 +18,14 @@ function prapareSectionListData(contacts: Contact[]): SectionListContactData[] {
     .reduce((prev, current) => {
       if (!prev.length) {
         return [{title: current.firstName[0], data: [current]}];
-      } else {
-        const foundContact = prev.find(
-          item => item.title === current.firstName[0],
-        );
-        foundContact
-          ? foundContact.data.push(current)
-          : prev.push({title: current.firstName[0], data: [current]});
-        return prev;
       }
+      const foundContact = prev.find(
+        item => item.title === current.firstName[0],
+      );
+      foundContact
+        ? foundContact.data.push(current)
+        : prev.push({title: current.firstName[0], data: [current]});
+      return prev;
     }, [] as SectionListContactData[])
     .sort(compareTitle);
 }

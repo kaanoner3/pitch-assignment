@@ -11,7 +11,6 @@ export default {
   moduleNameMapper: {
     '^recoil$': 'recoil/native',
   },
-
   clearMocks: true,
   coverageProvider: 'v8',
 };

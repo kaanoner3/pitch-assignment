@@ -85,6 +85,7 @@ const ContactList: React.FC = () => {
   const renderItem: ListRenderItem<Contact> = ({item}) => {
     return (
       <TouchableOpacity
+        testID="contact-item"
         onPress={() =>
           navigation.navigate('ContactDetail', {contactId: item.id})
         }
@@ -106,6 +107,7 @@ const ContactList: React.FC = () => {
       </Animated.View>
     );
   };
+  console.log('test123', searchText.length > 0);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -122,6 +124,7 @@ const ContactList: React.FC = () => {
           {...translateYAnimation},
         ]}>
         <AnimatedTextInput
+          testID="search-input"
           ref={textInputRef}
           placeholder="Search"
           placeholderTextColor="#000"
@@ -132,6 +135,7 @@ const ContactList: React.FC = () => {
           onBlur={() => setIsFocused(false)}
         />
         <Animated.Text
+          testID="cancel-button"
           onPress={onCancelPress}
           style={{...cancelButtonAnimation}}>
           Cancel
@@ -139,6 +143,7 @@ const ContactList: React.FC = () => {
       </Animated.View>
 
       <AnimatedSectionList
+        testID="sectionList"
         keyExtractor={(item, index) => `${item.id}-${index}`}
         sections={contacts}
         renderItem={renderItem}
@@ -161,6 +166,7 @@ const ContactList: React.FC = () => {
       />
       {searchText.length > 0 && (
         <FlatList
+          testID="flatlist"
           keyExtractor={(item, index) => `${item.id}-${index}`}
           renderItem={renderItem}
           style={[
