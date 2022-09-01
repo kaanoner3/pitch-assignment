@@ -107,6 +107,12 @@ const ContactList: React.FC = () => {
       </Animated.View>
     );
   };
+  const onFocus = React.useCallback(() => {
+    setIsFocused(true);
+  }, []);
+  const onBlur = React.useCallback(() => {
+    setIsFocused(false);
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -130,8 +136,8 @@ const ContactList: React.FC = () => {
           style={[styles.textInput, {...textInputAnimation}]}
           onChangeText={setSearchText}
           value={searchText}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
         <Animated.Text
           testID="cancel-button"
