@@ -12,7 +12,7 @@ describe('Example', () => {
   it('should have welcome screen', async () => {
     await expect(element(by.id('sectionList'))).toBeVisible();
   });
-  it('flatlist should visible when type to search input', async () => {
+  it('flatlist should visible when type to search input!', async () => {
     await element(by.id('search-input')).tap();
     await element(by.id('search-input')).typeText('Anna');
     await expect(element(by.id('cancel-button'))).toBeVisible(100);
