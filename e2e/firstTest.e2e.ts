@@ -17,6 +17,5 @@ describe('Example', () => {
     await element(by.id('search-input')).typeText('Anna');
     await expect(element(by.id('cancel-button'))).toBeVisible(100);
     await expect(element(by.id('flatlist'))).toBeVisible(50);
-    await expect(element(by.id('sectionList'))).not.toBeVisible();
   });
 });
